@@ -45,4 +45,16 @@ nnoremap fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
+autocmd BufRead,BufEnter *.astro set filetype=astro
 
+autocmd BufRead,BufEnter *.astro set filetype=astro
+
+autocmd BufRead,BufEnter *.astro set filetype=astro
+
+autocmd BufRead,BufEnter *.astro set filetype=astro
+
+autocmd BufRead,BufEnter *.astro set filetype=astro
+
+autocmd BufRead,BufEnter *.astro set filetype=astro
+
+autocmd BufRead,BufEnter *.astro set filetype=astro

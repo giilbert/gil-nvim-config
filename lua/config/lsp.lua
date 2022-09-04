@@ -46,7 +46,7 @@ _M.setup = function()
     bufmap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   end
 
-  local servers = { 'pyright', 'tsserver', 'cssls', 'eslint', 'prismals', 'clangd', 'rust_analyzer' }
+  local servers = { 'pyright', 'tsserver', 'cssls', 'eslint', 'prismals', 'clangd', 'rust_analyzer', 'astro', 'tailwindcss' }
   for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,

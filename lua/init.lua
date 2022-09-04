@@ -4,6 +4,7 @@ require('packer').startup(function()
   use 'folke/tokyonight.nvim' -- theme
   use 'neovim/nvim-lspconfig' -- language server
   use 'christoomey/vim-tmux-navigator' -- make tmux with panes
+  use 'lewis6991/gitsigns.nvim' -- git integration for buffers
 
   use 'preservim/nerdtree' -- file tree
   -- use 'kyazdani42/nvim-tree.lua'
@@ -58,3 +59,5 @@ require("config.bufferline").setup()
 require("config.lsp").setup()
 
 vim.cmd [[colorscheme onedark]]
+
+require('gitsigns').setup()

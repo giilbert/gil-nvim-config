@@ -44,6 +44,7 @@ require('packer').startup(function()
   -- themes
   use 'navarasu/onedark.nvim'
   use 'tiagovla/tokyodark.nvim'
+  use 'andweeb/presence.nvim'
 end)
 
 vim.g.tokyonight_style = "night"
@@ -61,3 +62,5 @@ require("config.lsp").setup()
 vim.cmd [[colorscheme onedark]]
 
 require('gitsigns').setup()
+
+require("presence"):setup()

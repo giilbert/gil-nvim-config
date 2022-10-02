@@ -46,7 +46,7 @@ _M.setup = function()
     bufmap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   end
 
-  local servers = { 'pyright', 'tsserver', 'cssls', 'eslint', 'prismals', 'clangd', 'rust_analyzer', 'astro', 'tailwindcss' }
+  local servers = { 'pyright', 'tsserver', 'cssls', 'eslint', 'prismals', 'clangd', 'rust_analyzer', 'astro', 'tailwindcss', 'html', 'emmet_ls' }
   for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,
@@ -60,7 +60,7 @@ _M.setup = function()
   end
 
   require('nvim-treesitter.configs').setup({
-    ensure_installed = { "python", "tsx", "typescript", "rust", "css" },
+    ensure_installed = { "python", "tsx", "typescript", "rust", "css", "html" },
     sync_install = false,
     auto_install = true,
     indent = {
@@ -127,6 +127,9 @@ _M.setup = function()
       ["typescript"] = { require("formatter.filetypes.typescript").prettier },
       ["javascript"] = { require("formatter.filetypes.javascript").prettier },
       ["rust"] = { require("formatter.filetypes.rust").rustfmt },
+      ["html"] = { require("formatter.filetypes.html").prettier },
+      ["css"] = { require("formatter.filetypes.css").prettier },
+      ["python"] = { require("formatter.filetypes.python").black },
     }
   })
   end

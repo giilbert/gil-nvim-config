@@ -54,7 +54,7 @@ require('onedark').load()
 local map = vim.api.nvim_set_keymap
 map('i', '<C-H>', '<C-W>', { noremap = true })
 
-require('feline').setup()
+require('config.feline').setup()
 
 require("config.bufferline").setup()
 require("config.lsp").setup()

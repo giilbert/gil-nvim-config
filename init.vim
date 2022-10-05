@@ -1,4 +1,3 @@
-map <silent> <C-n> :NERDTreeToggle<CR>
 imap <C-BS> <C-W>
 
 augroup FormatAutogroup
@@ -47,3 +46,7 @@ nnoremap fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap fs <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
 
 autocmd BufRead,BufEnter *.astro set filetype=astro
+
+highlight NeoTreeNormal guifg=#a7aab0 guibg=#222222
+highlight NeoTreeNormalNC guifg=#a7aab0 guibg=#222222
+highlight NeoTreeEndOfBuffer guifg=#222222 guibg=#222222

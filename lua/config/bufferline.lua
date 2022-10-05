@@ -30,8 +30,8 @@ _M.setup = function()
     options = {
       offsets = {
         {
-          filetype = "nerdtree",
-          text = "",
+          filetype = "neo-tree",
+          text = "Neo-tree",
           highlight = "Directory",
           text_align = "center"
         }

@@ -6,7 +6,15 @@ require('packer').startup(function()
   use 'christoomey/vim-tmux-navigator' -- make tmux with panes
   use 'lewis6991/gitsigns.nvim' -- git integration for buffers
 
-  use 'preservim/nerdtree' -- file tree
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      requires = { 
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+      }
+    }
   -- use 'kyazdani42/nvim-tree.lua'
 
   use 'hrsh7th/cmp-nvim-lsp' -- completion
@@ -55,7 +63,7 @@ local map = vim.api.nvim_set_keymap
 map('i', '<C-H>', '<C-W>', { noremap = true })
 
 require('config.feline').setup()
-
+require('config.neo-tree').setup()
 require("config.bufferline").setup()
 require("config.lsp").setup()
 

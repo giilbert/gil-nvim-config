@@ -45,8 +45,14 @@ nnoremap fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap fs <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
 
-autocmd BufRead,BufEnter *.astro set filetype=astro
+" autocmd BufRead,BufEnter *.astro set filetype=astro
+autocmd BufRead,BufEnter *.wgsl set filetype=wgsl
+autocmd BufRead,BufEnter *.gitignore set filetype=sh
 
 highlight NeoTreeNormal guifg=#a7aab0 guibg=#222222
 highlight NeoTreeNormalNC guifg=#a7aab0 guibg=#222222
 highlight NeoTreeEndOfBuffer guifg=#222222 guibg=#222222
+
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-l>'           " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-l>'           " replace visual C-n

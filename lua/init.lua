@@ -25,6 +25,7 @@ require('packer').startup(function()
   use 'dcampos/nvim-snippy'
   use 'dcampos/cmp-snippy'
   use 'tamago324/cmp-zsh'
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   use 'ryanoasis/vim-devicons' -- fancy icons
   use 'feline-nvim/feline.nvim' -- status bar at bottom
@@ -53,6 +54,10 @@ require('packer').startup(function()
   use 'navarasu/onedark.nvim'
   use 'tiagovla/tokyodark.nvim'
   use 'andweeb/presence.nvim'
+
+  use {
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+  }
 end)
 
 vim.g.tokyonight_style = "night"
@@ -72,3 +77,9 @@ vim.cmd [[colorscheme onedark]]
 require('gitsigns').setup()
 
 require("presence"):setup()
+
+vim.filetype.add({
+  extension = {
+    astro = "astro",
+  },
+})

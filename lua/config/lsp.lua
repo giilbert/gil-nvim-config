@@ -35,6 +35,7 @@ _M.setup = function()
     bufmap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     bufmap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     bufmap(bufnr, 'n', '<space><space>', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    bufmap(bufnr, 'n', '<space>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     bufmap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     bufmap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     bufmap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -46,7 +47,7 @@ _M.setup = function()
     bufmap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   end
 
-  local servers = { 'pyright', 'tsserver', 'cssls', 'eslint', 'prismals', 'clangd', 'rust_analyzer', 'astro', 'tailwindcss', 'html' }
+  local servers = { 'pyright', 'tsserver', 'eslint', 'prismals', 'clangd', 'rust_analyzer', 'astro', 'tailwindcss', 'html' }
   for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,
@@ -58,6 +59,17 @@ _M.setup = function()
       },
     }
   end
+
+require'lspconfig'.omnisharp.setup {
+    cmd = { "dotnet", "/usr/bin/omnisharp/OmniSharp.dll" },
+    enable_editorconfig_support = true,
+    enable_ms_build_load_projects_on_demand = false,
+    enable_roslyn_analyzers = false,
+    organize_imports_on_format = false,
+    enable_import_completion = false,
+    sdk_include_prereleases = true,
+    analyze_open_documents_only = false,
+}
 
   require('nvim-treesitter.configs').setup({
     ensure_installed = { "python", "tsx", "typescript", "rust", "css", "html" },
@@ -76,7 +88,15 @@ _M.setup = function()
   require('nvim-ts-autotag').setup()
 
   local cmp = require('cmp')
+
+  require("tailwindcss-colorizer-cmp").setup({
+    color_square_width = 4,
+  })
+
   cmp.setup({
+      formatting = {
+        format = require("tailwindcss-colorizer-cmp").formatter
+      },
       snippet = {
         expand = function(args)
           require('snippy').expand_snippet(args.body)
@@ -110,7 +130,7 @@ _M.setup = function()
   })
 
 
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
   local prettier = {
       formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:2}]],
       formatStdin = true,
@@ -132,6 +152,8 @@ _M.setup = function()
       ["python"] = { require("formatter.filetypes.python").black },
     }
   })
-  end
+
+end
 
 return _M
+

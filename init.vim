@@ -56,3 +56,7 @@ highlight NeoTreeEndOfBuffer guifg=#222222 guibg=#222222
 let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-l>'           " replace C-n
 let g:VM_maps['Find Subword Under'] = '<C-l>'           " replace visual C-n
+
+
+imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true

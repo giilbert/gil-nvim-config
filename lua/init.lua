@@ -55,9 +55,8 @@ require('packer').startup(function()
   use 'tiagovla/tokyodark.nvim'
   use 'andweeb/presence.nvim'
 
-  use {
-    "roobert/tailwindcss-colorizer-cmp.nvim",
-  }
+  use "roobert/tailwindcss-colorizer-cmp.nvim"
+  use "github/copilot.vim"
 end)
 
 vim.g.tokyonight_style = "night"

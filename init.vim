@@ -49,9 +49,9 @@ nnoremap fs <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
 autocmd BufRead,BufEnter *.wgsl set filetype=wgsl
 autocmd BufRead,BufEnter *.gitignore set filetype=sh
 
-highlight NeoTreeNormal guifg=#a7aab0 guibg=#222222
-highlight NeoTreeNormalNC guifg=#a7aab0 guibg=#222222
-highlight NeoTreeEndOfBuffer guifg=#222222 guibg=#222222
+highlight NeoTreeNormal guifg=#a7aab0 guibg=#1f2329
+highlight NeoTreeNormalNC guifg=#a7aab0 guibg=#1f2329
+highlight NeoTreeEndOfBuffer guifg=#222222 guibg=#1f2329
 
 let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-l>'           " replace C-n

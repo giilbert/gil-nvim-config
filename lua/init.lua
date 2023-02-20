@@ -57,19 +57,27 @@ require('packer').startup(function()
 
   use "roobert/tailwindcss-colorizer-cmp.nvim"
   use "github/copilot.vim"
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  use "goolord/alpha-nvim"
 end)
 
-vim.g.tokyonight_style = "night"
-require('onedark').setup({ style = 'warmer' })
+require('onedark').setup({ style = 'darker' })
 require('onedark').load()
 
 local map = vim.api.nvim_set_keymap
 map('i', '<C-H>', '<C-W>', { noremap = true })
 
-require('config.feline').setup()
+-- require('config.feline').setup()
 require('config.neo-tree').setup()
 require("config.bufferline").setup()
 require("config.lsp").setup()
+require("config.lualine").setup()
+require("config.alpha").setup()
 
 vim.cmd [[colorscheme onedark]]
 

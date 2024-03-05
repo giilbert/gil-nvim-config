@@ -1,4 +1,5 @@
 local use = require('packer').use
+
 require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- package manager
   use 'folke/tokyonight.nvim' -- theme
@@ -51,8 +52,7 @@ require('packer').startup(function()
   use 'windwp/nvim-ts-autotag' -- closes html tags
 
   -- themes
-  use 'navarasu/onedark.nvim'
-  use 'tiagovla/tokyodark.nvim'
+  use "olimorris/onedarkpro.nvim"
   use 'andweeb/presence.nvim'
 
   use "roobert/tailwindcss-colorizer-cmp.nvim"
@@ -64,10 +64,15 @@ require('packer').startup(function()
   }
 
   use "goolord/alpha-nvim"
+
+  use({
+    "kdheepak/lazygit.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+  })
 end)
 
-require('onedark').setup({ style = 'darker' })
-require('onedark').load()
+-- require('onedark').setup({ style = 'darker' })
+-- require('onedark').load()
 
 local map = vim.api.nvim_set_keymap
 map('i', '<C-H>', '<C-W>', { noremap = true })
@@ -78,15 +83,16 @@ require("config.bufferline").setup()
 require("config.lsp").setup()
 require("config.lualine").setup()
 require("config.alpha").setup()
-
-vim.cmd [[colorscheme onedark]]
+require("config.zoom").setup()
 
 require('gitsigns').setup()
-
-require("presence"):setup()
+require("presence").setup()
 
 vim.filetype.add({
   extension = {
     astro = "astro",
   },
 })
+
+vim.cmd [[colorscheme onedark]]
+

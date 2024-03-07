@@ -1,5 +1,3 @@
-imap <C-BS> <C-W>
-
 augroup FormatAutogroup
   autocmd!
   autocmd BufWritePost * FormatWrite
@@ -60,3 +58,4 @@ let g:VM_maps['Find Subword Under'] = '<C-l>'           " replace visual C-n
 
 imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
+inoremap <C-BS> <C-W>

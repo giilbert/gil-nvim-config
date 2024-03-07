@@ -31,6 +31,7 @@ require('packer').startup(function()
   use 'ryanoasis/vim-devicons' -- fancy icons
   use 'feline-nvim/feline.nvim' -- status bar at bottom
   use 'mhartington/formatter.nvim' -- formatting
+
   use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
   use {
     "folke/trouble.nvim", -- shows problems
@@ -69,21 +70,40 @@ require('packer').startup(function()
     "kdheepak/lazygit.nvim",
     requires = { "nvim-lua/plenary.nvim" },
   })
+
+  use "rebelot/heirline.nvim"
+
+  use({
+    "folke/noice.nvim",
+    requires = { "MunifTanjim/nui.nvim" },
+  })
 end)
 
 -- require('onedark').setup({ style = 'darker' })
 -- require('onedark').load()
+vim.cmd [[colorscheme onedark]]
+
 
 local map = vim.api.nvim_set_keymap
 map('i', '<C-H>', '<C-W>', { noremap = true })
 
--- require('config.feline').setup()
-require('config.neo-tree').setup()
-require("config.bufferline").setup()
-require("config.lsp").setup()
-require("config.lualine").setup()
-require("config.alpha").setup()
-require("config.zoom").setup()
+local CONFIG_MODULES = {
+  "config.zoom",
+  "config.neo-tree",
+  "config.lsp",
+  -- "config.heirline",
+  "config.bufferline",
+  "config.lualine",
+  "config.alpha",
+}
+
+for _, module in ipairs(CONFIG_MODULES)
+do
+  local status, err = pcall(require(module).setup)
+  if err then 
+    vim.notify("Failed to load " .. module .. " with error: \n" .. err, vim.log.levels.ERROR)
+  end
+end
 
 require('gitsigns').setup()
 require("presence").setup()
@@ -94,5 +114,26 @@ vim.filetype.add({
   },
 })
 
-vim.cmd [[colorscheme onedark]]
+vim.go.cmdheight = 0
 
+require("noice").setup({
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+    },
+  },
+  messages = {
+    view = false,
+  },
+  -- you can enable a preset for easier configuration
+  presets = {
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
+})

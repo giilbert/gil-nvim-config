@@ -5,12 +5,9 @@ local filereadable = vim.fn.filereadable
 local default_header = {
     type = "text",
     val = {
-[[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗]],
-[[████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║]],
-[[██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║]],
-[[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
-[[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
-[[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]]
+[[    |\__/,|   (`\ ]],
+[[  _.|o o  |_   ) )]],
+[[-(((---(((--------]]
     },
     opts = {
         hl = "@function",
@@ -29,10 +26,9 @@ local function button(sc, txt, keybind, keybind_opts)
     local sc_ = sc:gsub("%s", ""):gsub(leader, "<leader>")
 
     local opts = {
-        position = "left",
         shortcut = "[" .. sc .. "] ",
         cursor = 1,
-        -- width = 50,
+        width = 60,
         align_shortcut = "left",
         hl_shortcut = { { "Operator", 0, 1 }, { "Number", 1, #sc + 1 }, { "Operator", #sc + 1, #sc + 2 } },
         shrink_margin = false,
@@ -172,14 +168,13 @@ local section = {
         type = "group",
         val = {
             { type = "padding", val = 1 },
-            { type = "text", val = mru_title, opts = { hl = "SpecialComment", shrink_margin = false } },
+            { type = "text", val = mru_title, opts = { hl = "SpecialComment" } },
             { type = "padding", val = 1 },
             {
                 type = "group",
                 val = function()
                     return { mru(0, vim.fn.getcwd()) }
                 end,
-                opts = { shrink_margin = false },
             },
         },
     },
@@ -197,7 +192,7 @@ local section = {
 
 local config = {
     layout = {
-        { type = "padding", val = 3 },
+        { type = "padding", val = 2 },
         section.header,
         { type = "padding", val = 2 },
         section.top_buttons,

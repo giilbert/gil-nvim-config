@@ -1,31 +1,14 @@
 local function setup()
-  vim.g.gui_font_default_size = 14
+  vim.g.gui_font_default_size = 15
   vim.g.gui_font_size = vim.g.gui_font_default_size
   vim.g.gui_font_face = "FiraCode Nerd Font Mono"
+  vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
 
-  RefreshGuiFont = function()
-    vim.opt.guifont = string.format("%s:h%s",vim.g.gui_font_face, vim.g.gui_font_size)
+  if vim.g.neovide == true then
+    vim.api.nvim_set_keymap("n", "<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>", { silent = true })
+    vim.api.nvim_set_keymap("n", "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>", { silent = true })
+    vim.api.nvim_set_keymap("n", "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
   end
-
-  ResizeGuiFont = function(delta)
-    vim.g.gui_font_size = vim.g.gui_font_size + delta
-    RefreshGuiFont()
-  end
-
-  ResetGuiFont = function ()
-    vim.g.gui_font_size = vim.g.gui_font_default_size
-    RefreshGuiFont()
-  end
-
-  -- Call function on startup to set default value
-  ResetGuiFont()
-
-  -- Keymaps
-  local opts = { noremap = true, silent = true }
-
-  vim.keymap.set({'n', 'i'}, "<C-+>", function() ResizeGuiFont(1)  end, opts)
-  vim.keymap.set({'n', 'i'}, "<C-->", function() ResizeGuiFont(-1) end, opts)
-  vim.keymap.set({'n', 'i'}, "<c-bs>", function() resetguifont() end, opts)
 end
 
 _M = {}

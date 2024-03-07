@@ -136,9 +136,8 @@ require'lspconfig'.omnisharp.setup {
       formatStdin = true,
   }
 
-  vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1E1E21]]
-  vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1E1E21]]
-  vim.cmd [[colorscheme onedark]]
+  vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#282C34]]
+  vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=#515764 guibg=#282C34]]
 
 
   require("formatter").setup({
